@@ -5,6 +5,9 @@ const transporter = nodemailer.createTransport({
     host: "88.222.245.101", // Your SMTP server IP
     port: 25, // SMTP port
     secure: false, // Use true for port 465, false for other ports
+    tls: {
+        rejectUnauthorized: false // Allow self-signed certificates
+    },
 });
 
 // Email options
