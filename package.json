@@ -12,6 +12,7 @@
   "dependencies": {
     "mailparser": "^3.7.1",
     "nodemailer": "^6.9.15",
+    "nodemailer-dkim": "^1.0.5",
     "smtp-server": "^3.13.5"
   }
 }
