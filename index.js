@@ -17,7 +17,7 @@ const server = new SMTPServer({
         console.log(`From onRcptTo method, mail address is address: ${address.address}, and session ID: ${session.id}`)
         cb()
     },
-    onData(stream, session, callback) { 
+    onData(stream, session, callback) {
         simpleParser(stream, (err, parsed) => {
             if (err) {
                 console.error("Error parsing email:", err);
@@ -42,7 +42,9 @@ const server = new SMTPServer({
 
 
 server.listen(587, () => {
-require("./test")
-console.log("Mail server is listen on PORT: 587")
+    setTimeout(() => {
+        require("./test")
+    }, 10000);
+    console.log("Mail server is listen on PORT: 587")
 
 })
