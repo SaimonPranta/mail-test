@@ -12,7 +12,7 @@ const transporter = nodemailer.createTransport({
         pass: "ysadfswe3r", // Your email password
     },
     dkim: {
-        domainName: "micple.com",
+        domainName: "mailserver.micple.com",
         keySelector: "default", // Adjust as needed
         privateKey: `-----BEGIN RSA PRIVATE KEY-----
 MIICWwIBAAKBgQDbJf3MtiB+ehEETtKoF91Yn1TPsj4GfQUqFT2PVCu3eZl9oJAG
