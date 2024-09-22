@@ -37,7 +37,7 @@ qhEx26LoSfNddHXAiQJAcRARuSlPBjxNjjjwbGMite9vuDLtyEuQKKb54ylDd1mJ
 
 // Email options
 const mailOptions = {
-    from: "symul@micple.com", // Replace with your sender email
+    from: "symulkabirpranta@gmail.com", // Replace with your sender email
     to: "symulkabirpranta@gmail.com", // Recipient's email
     subject: "Backup Notification 10", // Subject line
     text: "This is a backup notification email sent from my custom SMTP server.", // Plain text body
