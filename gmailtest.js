@@ -4,20 +4,20 @@ const nodemailer = require("nodemailer");
 console.log("Hell from mail send page");
 
 const transporter = nodemailer.createTransport({
-    host: "52.77.226.136", // Replace with your SMTP server IP
-    port: 587, // Port your server is listening on
-    secure: false, // Set to true if using port 465
+    host: "smtp.gmail.com", // Your SMTP server
+    port: 465, // Port for secure connection
+    secure: true, // Use true for port 465, false for other ports
     auth: {
-        user: "symul@micple.com", // Your email address
-        pass: "ysadfswe3r", // Your email password
-    },
+        user: "saimonpranta@gmail.com",
+        pass: "xftc rneh usez bxpb", // Make sure to use a secure method to store your password
+    }
 });
 
 // Email options
 const mailOptions = {
     from: "saimonpranta@gmail.com", // Replace with your sender email
     to: "symulkabirpranta@gmail.com", // Recipient's email
-    subject: "Backup Notification 10", // Subject line
+    subject: "Backup Notification 4", // Subject line
     text: "This is a backup notification email sent from my custom SMTP server.", // Plain text body
     html: "<b>This is a backup notification email sent from my custom SMTP server.</b>", // HTML body
 };

@@ -11,17 +11,17 @@ const server = new SMTPServer({
     onMailFrom(address, session, cb) {
         console.log(`From onMailFrom method, mail address is address: ${address.address}, and session ID: ${session.id}`);
         // Example: reject if sender is not from a specific domain
-        // if (!address.address.endsWith('@micple.com')) {
-        //     return cb(new Error('Unauthorized sender'));
-        // }
+        if (!address.address.endsWith('@micple.com')) {
+            return cb(new Error('Unauthorized sender'));
+        }
         cb();
     },
     onRcptTo(address, session, cb) {
         console.log(`From onRcptTo method, mail address is address: ${address.address}, and session ID: ${session.id}`);
         // Example: reject if recipient is not allowed
-        // if (!address.address.endsWith('@gmail.com')) {
-        //     return cb(new Error('Unauthorized recipient'));
-        // }
+        if (!address.address.endsWith('@gmail.com')) {
+            return cb(new Error('Unauthorized recipient'));
+        }
         cb();
     },
     onData(stream, session, callback) {
