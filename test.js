@@ -11,6 +11,9 @@ const transporter = nodemailer.createTransport({
         user: "symul@micple.com", // Your email address
         pass: "ysadfswe3r", // Your email password
     },
+    tls: {
+        rejectUnauthorized: false // Ignore self-signed certificate
+    }
 });
 
 // Email options
