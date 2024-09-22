@@ -7,7 +7,7 @@ const transporter = nodemailer.createTransport({
     port: 587,
     secure: false, // true for port 465, false for 587
     tls: {
-        rejectUnauthorized: true // Allow self-signed certificates
+        rejectUnauthorized: false  // Allow self-signed certificates
     },
     dkim: {
         domainName: "micple.com", // Your domain
