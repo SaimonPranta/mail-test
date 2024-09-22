@@ -1,21 +1,28 @@
 const SMTPServer = require("smtp-server").SMTPServer;
 const { simpleParser } = require("mailparser");
-// require("./test2")
 
 const server = new SMTPServer({
     allowInsecureAuth: true,
     authOptional: true,
     onConnect(session, cb) {
-        console.log("From onConnect method, and session ID: ", session.id)
-        cb()
+        console.log("From onConnect method, and session ID: ", session.id);
+        cb();
     },
     onMailFrom(address, session, cb) {
-        console.log(`From onMailFrom method, mail address is address: ${address.address}, and session ID: ${session.id}`)
-        cb()
+        console.log(`From onMailFrom method, mail address is address: ${address.address}, and session ID: ${session.id}`);
+        // Example: reject if sender is not from a specific domain
+        if (!address.address.endsWith('@micple.com')) {
+            return cb(new Error('Unauthorized sender'));
+        }
+        cb();
     },
     onRcptTo(address, session, cb) {
-        console.log(`From onRcptTo method, mail address is address: ${address.address}, and session ID: ${session.id}`)
-        cb()
+        console.log(`From onRcptTo method, mail address is address: ${address.address}, and session ID: ${session.id}`);
+        // Example: reject if recipient is not allowed
+        if (!address.address.endsWith('@gmail.com')) {
+            return cb(new Error('Unauthorized recipient'));
+        }
+        cb();
     },
     onData(stream, session, callback) {
         simpleParser(stream, (err, parsed) => {
@@ -23,19 +30,13 @@ const server = new SMTPServer({
                 console.error("Error parsing email:", err);
                 return callback(err);
             }
-
             console.log("From onData method, parsed email:", parsed);
-            // Access headers and body
-            // console.log("Subject:", parsed.subject);
-            // console.log("From:", parsed.from.text);
-            // console.log("To:", parsed.to.text);
-            // console.log("Text body:", parsed.text);
-            // console.log("HTML body:", parsed.html);
-
+            // Additional logging
+            console.log(`Email from ${parsed.from.text} to ${parsed.to.text} with subject "${parsed.subject}"`);
             callback();
         });
     },
-})
+});
 
 
 
