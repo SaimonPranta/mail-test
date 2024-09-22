@@ -1,6 +1,5 @@
 const SMTPServer = require("smtp-server").SMTPServer;
 const { simpleParser } = require("mailparser");
-require("./test")
 // require("./test2")
 
 const server = new SMTPServer({
@@ -42,6 +41,8 @@ const server = new SMTPServer({
 
 
 
-server.listen(25, () => {
-    console.log("Mail server is listen on PORT: 25")
+server.listen(587, () => {
+require("./test")
+console.log("Mail server is listen on PORT: 587")
+
 })

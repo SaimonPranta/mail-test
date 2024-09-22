@@ -4,8 +4,8 @@ const nodemailer = require("nodemailer");
 console.log("Hell from mail send page")
 const transporter = nodemailer.createTransport({
     host: "52.77.226.136", // Your SMTP server IP
-    port: 25, // SMTP port
-    secure: false, // Use true for port 465, false for other ports
+    port: 587,
+    secure: false, // true for port 465, false for 587
     tls: {
         rejectUnauthorized: true // Allow self-signed certificates
     },
