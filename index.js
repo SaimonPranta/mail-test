@@ -3,14 +3,22 @@ const { simpleParser } = require("mailparser");
 
 const server = new SMTPServer({
     allowInsecureAuth: true,
-    authOptional: true,
+    authOptional: true, // Set to false if you need authentication to be enforced
+    onAuth(auth, session, callback) {
+        // Handle authentication here
+        const { username, password } = auth;
+        if (username === "symul@micple.com" && password === "ysadfswe3r") {
+            return callback(null, { user: username });
+        } else {
+            return callback(new Error('Invalid username or password'));
+        }
+    },
     onConnect(session, cb) {
         console.log("From onConnect method, and session ID: ", session.id);
         cb();
     },
     onMailFrom(address, session, cb) {
         console.log(`From onMailFrom method, mail address is address: ${address.address}, and session ID: ${session.id}`);
-        // Example: reject if sender is not from a specific domain
         if (!address.address.endsWith('@micple.com')) {
             return cb(new Error('Unauthorized sender'));
         }
@@ -18,7 +26,6 @@ const server = new SMTPServer({
     },
     onRcptTo(address, session, cb) {
         console.log(`From onRcptTo method, mail address is address: ${address.address}, and session ID: ${session.id}`);
-        // Example: reject if recipient is not allowed
         if (!address.address.endsWith('@gmail.com')) {
             return cb(new Error('Unauthorized recipient'));
         }
@@ -31,21 +38,15 @@ const server = new SMTPServer({
                 return callback(err);
             }
             console.log("From onData method, parsed email:", parsed);
-            // Additional logging
             console.log(`Email from ${parsed.from.text} to ${parsed.to.text} with subject "${parsed.subject}"`);
             callback();
         });
     },
 });
 
-
-
-
-
 server.listen(587, () => {
     setTimeout(() => {
-        require("./test")
+        require("./test");
     }, 10000);
-    console.log("Mail server is listen on PORT: 587")
-
-})
+    console.log("Mail server is listening on PORT: 587");
+});
