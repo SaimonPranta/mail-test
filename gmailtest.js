@@ -17,7 +17,7 @@ const transporter = nodemailer.createTransport({
 const mailOptions = {
     from: "saimonpranta@gmail.com", // Replace with your sender email
     to: "symulkabirpranta@gmail.com", // Recipient's email
-    subject: "Backup Notification 4", // Subject line
+    subject: "Backup Notification new ", // Subject line
     text: "This is a backup notification email sent from my custom SMTP server.", // Plain text body
     html: "<b>This is a backup notification email sent from my custom SMTP server.</b>", // HTML body
 };
