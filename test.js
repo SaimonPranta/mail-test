@@ -4,7 +4,7 @@ const nodemailer = require("nodemailer");
 console.log("Hell from mail send page");
 
 const transporter = nodemailer.createTransport({
-    host: "52.77.226.136", // Replace with your SMTP server IP
+    host: "52.77.226.136", // Your SMTP server IP
     port: 587, // Port your server is listening on
     secure: false, // Set to true if using port 465
     auth: {
@@ -12,8 +12,8 @@ const transporter = nodemailer.createTransport({
         pass: "ysadfswe3r", // Your email password
     },
     dkim: {
-        domainName: "mailserver.micple.com",
-        keySelector: "default", // Adjust as needed
+        domainName: "micple.com",
+        keySelector: "default",
         privateKey: `-----BEGIN RSA PRIVATE KEY-----
 MIICWwIBAAKBgQDbJf3MtiB+ehEETtKoF91Yn1TPsj4GfQUqFT2PVCu3eZl9oJAG
 sTkRR4FfeQD8RAGpxrRUo8PCbPXsr3KQuk8IxoC2d+vnlHos5fjBR3NUUPJZPPMU
@@ -28,8 +28,10 @@ aAKIgPS7XOK16RSRn2DCmm1pm1J8a2xX6ynU8WsrzWLnQLd7zK1F4xU8fQJANg6p
 NiLeDCWPRzP8WZSFdv2dh7z6qlYOF/AcjBpTJ4Pijl0XN0+Zvb+6ZBEpMjMir4Dn
 qhEx26LoSfNddHXAiQJAcRARuSlPBjxNjjjwbGMite9vuDLtyEuQKKb54ylDd1mJ
 /1/dDss6aJ5wpAem0RY7JwuLHw3qet2fCw1ClNd+Sg==
------END RSA PRIVATE KEY-----`
-        ,
+-----END RSA PRIVATE KEY-----`,
+    },
+    tls: {
+        rejectUnauthorized: false, // Allow self-signed certificates
     },
 });
 
@@ -50,6 +52,6 @@ const mailSend = () => {
         }
         console.log("Email sent:", info);
     });
-}
+};
 
 mailSend();
