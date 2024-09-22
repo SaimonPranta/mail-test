@@ -28,7 +28,8 @@ aAKIgPS7XOK16RSRn2DCmm1pm1J8a2xX6ynU8WsrzWLnQLd7zK1F4xU8fQJANg6p
 NiLeDCWPRzP8WZSFdv2dh7z6qlYOF/AcjBpTJ4Pijl0XN0+Zvb+6ZBEpMjMir4Dn
 qhEx26LoSfNddHXAiQJAcRARuSlPBjxNjjjwbGMite9vuDLtyEuQKKb54ylDd1mJ
 /1/dDss6aJ5wpAem0RY7JwuLHw3qet2fCw1ClNd+Sg==
------END RSA PRIVATE KEY-----`,
+-----END RSA PRIVATE KEY-----`
+        ,
     },
 });
 
