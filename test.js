@@ -1,19 +1,20 @@
 const nodemailer = require("nodemailer");
-const { DKIM } = require("nodemailer-dkim");
 
-// Create a transporter
+// Create a transporter with DKIM signing
+console.log("Hell from mail send page");
+
 const transporter = nodemailer.createTransport({
-    host: "52.77.226.136",
-    port: 587,
-    secure: false,
+    host: "52.77.226.136", // Replace with your SMTP server IP
+    port: 587, // Port your server is listening on
+    secure: false, // Set to true if using port 465
     auth: {
-        user: "symul@micple.com",
-        pass: "ysadfswe3r",
+        user: "symul@micple.com", // Your email address
+        pass: "ysadfswe3r", // Your email password
     },
-});
-
-// DKIM setup
-const privateKey = `-----BEGIN RSA PRIVATE KEY-----
+    dkim: {
+        domainName: "micple.com",
+        keySelector: "default", // Adjust as needed
+        privateKey: `-----BEGIN RSA PRIVATE KEY-----
 MIICWwIBAAKBgQDbJf3MtiB+ehEETtKoF91Yn1TPsj4GfQUqFT2PVCu3eZl9oJAG
 sTkRR4FfeQD8RAGpxrRUo8PCbPXsr3KQuk8IxoC2d+vnlHos5fjBR3NUUPJZPPMU
 K1/I9YsMfUZSJnswS4VPz1okmAsRIksnPsXBo+OTlVfz2n/vPYeGfbQODwIDAQAB
@@ -27,17 +28,13 @@ aAKIgPS7XOK16RSRn2DCmm1pm1J8a2xX6ynU8WsrzWLnQLd7zK1F4xU8fQJANg6p
 NiLeDCWPRzP8WZSFdv2dh7z6qlYOF/AcjBpTJ4Pijl0XN0+Zvb+6ZBEpMjMir4Dn
 qhEx26LoSfNddHXAiQJAcRARuSlPBjxNjjjwbGMite9vuDLtyEuQKKb54ylDd1mJ
 /1/dDss6aJ5wpAem0RY7JwuLHw3qet2fCw1ClNd+Sg==
------END RSA PRIVATE KEY-----`;
-
-transporter.use("stream", DKIM({
-    domainName: "micple.com",
-    keySelector: "default",
-    privateKey: privateKey,
-}));
+-----END RSA PRIVATE KEY-----`,
+    },
+});
 
 // Email options
 const mailOptions = {
-    from: "symul@micple.com", // Use your micple.com email
+    from: "symul@micple.com", // Replace with your sender email
     to: "symulkabirpranta@gmail.com", // Recipient's email
     subject: "Backup Notification 10", // Subject line
     text: "This is a backup notification email sent from my custom SMTP server.", // Plain text body
