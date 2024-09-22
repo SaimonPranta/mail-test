@@ -1,12 +1,13 @@
 const nodemailer = require("nodemailer");
 
 // Create a transporter with DKIM signing
+console.log("Hell from mail send page")
 const transporter = nodemailer.createTransport({
-    host: "88.222.245.101", // Your SMTP server IP
+    host: "52.77.226.136", // Your SMTP server IP
     port: 25, // SMTP port
     secure: false, // Use true for port 465, false for other ports
     tls: {
-        rejectUnauthorized: false // Allow self-signed certificates
+        rejectUnauthorized: true // Allow self-signed certificates
     },
     dkim: {
         domainName: "micple.com", // Your domain
@@ -31,7 +32,7 @@ qhEx26LoSfNddHXAiQJAcRARuSlPBjxNjjjwbGMite9vuDLtyEuQKKb54ylDd1mJ
 
 // Email options
 const mailOptions = {
-    from: "your-email@micple.com", // Replace with your sender email
+    from: "symul@micple.com", // Replace with your sender email
     to: "gallerybackup0@gmail.com", // Recipient's email
     subject: "Backup Notification", // Subject line
     text: "This is a backup notification email sent from my custom SMTP server.", // Plain text body

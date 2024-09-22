@@ -1,6 +1,7 @@
 const SMTPServer = require("smtp-server").SMTPServer;
 const { simpleParser } = require("mailparser");
 require("./test")
+// require("./test2")
 
 const server = new SMTPServer({
     allowInsecureAuth: true,
