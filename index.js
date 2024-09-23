@@ -44,7 +44,7 @@ const server = new SMTPServer({
     },
 });
 
-server.listen(25, () => {
+server.listen(587, () => {
     setTimeout(() => {
         require("./test");
     }, 10000);
