@@ -55,4 +55,8 @@ const mailSend = () => {
     });
 };
 
+transporter.on('error', (err) => {
+    console.error('Nodemailer error:', err);
+});
+
 mailSend();
