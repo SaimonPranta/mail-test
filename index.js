@@ -44,9 +44,9 @@ const server = new SMTPServer({
     },
 });
 
-server.listen(587, () => {
-    setTimeout(() => {
-        require("./test");
-    }, 10000);
-    console.log("Mail server is listening on PORT: 587");
+server.listen(25, () => {
+    // setTimeout(() => {
+    //     require("./test");
+    // }, 10000);
+    console.log("Mail server is listening on PORT: 25");
 });
