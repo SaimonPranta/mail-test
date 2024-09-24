@@ -45,8 +45,7 @@ const server = new SMTPServer({
     },
 });
 
-server.listen(PORT, () => {
-    // server.listen(587, () => {
+server.listen(PORT, () => { 
 
     setTimeout(() => {
         require("./test");
