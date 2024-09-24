@@ -39,12 +39,15 @@ const server = new SMTPServer({
 });
 
 // SSL/TLS Options
-const options = {
-    key: fs.readFileSync("/var/ssl-certificate/private.key"), // Path to your private key
-    cert: fs.readFileSync("/var/ssl-certificate/certificate.crt"), // Path to your certificate
-};
+// const options = {
+//     key: fs.readFileSync("/var/ssl-certificate/private.key"), // Path to your private key
+//     cert: fs.readFileSync("/var/ssl-certificate/certificate.crt"), // Path to your certificate
+// };
 
-server.listen(PORT, options, () => {
+// server.listen(PORT, options, () => {
+//     console.log(`Mail server is listening on PORT: ${PORT} with SSL/TLS`);
+// });
+server.listen(PORT, () => {
     console.log(`Mail server is listening on PORT: ${PORT} with SSL/TLS`);
 });
 
