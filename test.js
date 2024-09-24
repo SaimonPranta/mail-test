@@ -1,14 +1,10 @@
 const nodemailer = require("nodemailer");
 const { PORT } = require("./constant");
 
-// Create a transporter with DKIM signing 
-
+// Create a transporter with DKIM signing
 const transporter = nodemailer.createTransport({
-    host: "52.77.226.136", // Your SMTP server IP
-    // port: 25, // Port your server is listening on
-    // port: 587, // Port your server is listening on
-  // port: 465, // Port your server is listening on
-    port: PORT, // Port your server is listening on
+    host: "52.77.226.136", // Your SMTP server IP 
+    port: PORT, // Use 25, 465, or 587 based on your configuration
     secure: false, // Set to true if using port 465
     auth: {
         user: "symul@micple.com", // Your email address
@@ -30,7 +26,7 @@ kEWmiuVLxQwMgP5QYwsMo2CzHnUN7u+FvQJABDAVGdm/WM4sCNrJJzgUJKMDX6yA
 aAKIgPS7XOK16RSRn2DCmm1pm1J8a2xX6ynU8WsrzWLnQLd7zK1F4xU8fQJANg6p
 NiLeDCWPRzP8WZSFdv2dh7z6qlYOF/AcjBpTJ4Pijl0XN0+Zvb+6ZBEpMjMir4Dn
 qhEx26LoSfNddHXAiQJAcRARuSlPBjxNjjjwbGMite9vuDLtyEuQKKb54ylDd1mJ
-/1/dDss6aJ5wpAem0RY7JwuLHw3qet2fCw1ClNd+Sg== 
+/1/dDss6aJ5wpAem0RY7JwuLHw3qet2fCw1ClNd+Sg==
 -----END RSA PRIVATE KEY-----`,
     },
     tls: {
@@ -40,9 +36,9 @@ qhEx26LoSfNddHXAiQJAcRARuSlPBjxNjjjwbGMite9vuDLtyEuQKKb54ylDd1mJ
 
 // Email options
 const mailOptions = {
-    from: "symul@micple.com", // Replace with your sender email
-    to: "symulkabirpranta@gmail.com", // Recipient's email
-    subject: "Backup Notification 9999999999999", // Subject line
+    from: "symul@micple.com", // Sender email
+    to: "symulkabirpranta@gmail.com", // Recipient email
+    subject: "Backup Notification", // Subject line
     text: "This is a backup notification email sent from my custom SMTP server.", // Plain text body
     html: "<b>This is a backup notification email sent from my custom SMTP server.</b>", // HTML body
 };
@@ -53,12 +49,14 @@ const mailSend = () => {
         if (error) {
             return console.log("Error occurred:", error);
         }
-        console.log("Email sent:", info);
+        console.log("Email sent:", info.response);
     });
 };
 
+// Handle transporter errors
 transporter.on('error', (err) => {
     console.error('Nodemailer error:', err);
 });
 
+// Execute mail send
 mailSend();
