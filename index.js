@@ -1,5 +1,6 @@
 const SMTPServer = require("smtp-server").SMTPServer;
 const { simpleParser } = require("mailparser");
+const { PORT } = require("./constant"); 
 
 const server = new SMTPServer({
     allowInsecureAuth: true,
@@ -44,13 +45,13 @@ const server = new SMTPServer({
     },
 });
 
-server.listen(465, () => {
-// server.listen(587, () => {
+server.listen(PORT, () => {
+    // server.listen(587, () => {
 
     setTimeout(() => {
         require("./test");
     }, 10000);
-    console.log("Mail server is listening on PORT: 25");
+    console.log(`Mail server is listening on PORT: ${PORT}`);
 });
 
 server.on('error', (err) => {

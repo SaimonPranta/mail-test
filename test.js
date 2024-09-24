@@ -1,13 +1,14 @@
 const nodemailer = require("nodemailer");
+const { PORT } = require("./constant");
 
-// Create a transporter with DKIM signing
-console.log("Hell from mail send page");
+// Create a transporter with DKIM signing 
 
 const transporter = nodemailer.createTransport({
     host: "52.77.226.136", // Your SMTP server IP
     // port: 25, // Port your server is listening on
     // port: 587, // Port your server is listening on
-    port: 465, // Port your server is listening on
+  // port: 465, // Port your server is listening on
+    port: PORT, // Port your server is listening on
     secure: false, // Set to true if using port 465
     auth: {
         user: "symul@micple.com", // Your email address
