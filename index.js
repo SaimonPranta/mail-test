@@ -38,10 +38,10 @@ const server = new SMTPServer({
             console.log("Parsed from.value:", from?.value);
 
             console.log("bcc :", bcc);
-            console.log("bcc?.value:", bcc.value);
+            console.log("bcc?.value:", bcc?.value);
 
             console.log("cc :", cc);
-            console.log("cc?.value:", cc.value);
+            console.log("cc?.value:", cc?.value);
             callback();
         });
     },
