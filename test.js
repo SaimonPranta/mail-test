@@ -3,7 +3,7 @@ const { PORT } = require("./constant"); // Ensure PORT is set to 587
 
 // Create a transporter with DKIM signing
 const transporter = nodemailer.createTransport({
-    host: "52.77.226.136", // Your SMTP server IP 
+    host: "mailserver.micple.com", // Your SMTP server IP 
     port: PORT, // Use 587 for STARTTLS
     secure: false, // Set to false for port 587
     auth: {
