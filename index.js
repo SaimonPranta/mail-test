@@ -1,7 +1,7 @@
 const { SMTPServer } = require("smtp-server");
 const { simpleParser } = require("mailparser");
 const fs = require("fs");
-const { PORT } = require("./constant"); // Ensure PORT is defined in your constant file
+const { PORT } = require("./constant");
 
 const server = new SMTPServer({
     allowInsecureAuth: true,
@@ -15,7 +15,7 @@ const server = new SMTPServer({
         }
     },
     onConnect(session, cb) {
-        console.log("From onConnect method, and session ID: ", session.id);
+        console.log("Connected, session ID: ", session.id);
         cb();
     },
     onMailFrom(address, session, cb) {
@@ -36,10 +36,9 @@ const server = new SMTPServer({
     },
 });
 
-// SSL/TLS Options
 const options = {
-    key: fs.readFileSync("/var/ssl-certificate/private.key"), // Path to your private key
-    cert: fs.readFileSync("/var/ssl-certificate/certificate.crt"), // Path to your certificate
+    key: fs.readFileSync("/var/ssl-certificate/private.key"),
+    cert: fs.readFileSync("/var/ssl-certificate/certificate.crt"),
 };
 
 server.listen(PORT, options, () => {
