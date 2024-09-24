@@ -32,7 +32,13 @@ const server = new SMTPServer({
                 console.error("Error parsing email:", err);
                 return callback(err);
             }
-            console.log("Parsed email:", parsed);
+            // console.log("Parsed email:", parsed);
+            const {from, bcc} = parsed
+            console.log("Parsed from:", from);
+            console.log("Parsed from.value:", from.value);
+            
+            console.log("bcc :", bcc);
+            console.log("bcc.value:", bcc.value);
             callback();
         });
     },
