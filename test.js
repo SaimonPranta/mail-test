@@ -1,23 +1,24 @@
 const nodemailer = require("nodemailer");
-const { PORT } = require("./constant");
+const { PORT } = require("./constant"); // Ensure PORT is set to 587
 
+// Create a transporter with DKIM signing
 const transporter = nodemailer.createTransport({
-    host: "52.77.226.136", // Your SMTP server IP
-    port: PORT, // Use 587
-    secure: false, // Set to false for port 587 (STARTTLS)
+    host: "52.77.226.136", // Your SMTP server IP 
+    port: PORT, // Use 587 for STARTTLS
+    secure: false, // Set to false for port 587
     auth: {
         user: "symul@micple.com", // Your email address
         pass: "ysadfswe3r", // Your email password
     },
     tls: {
-        rejectUnauthorized: false, // Allow self-signed certificates, if needed
+        rejectUnauthorized: false, // Allow self-signed certificates
     },
 });
 
 // Email options
 const mailOptions = {
-    from: "symulkabirpranta@gmail.com", // Sender email
-    to: "symulkabirpranta@gmail.com", // Recipient email
+    from: "symul@micple.com", // Ensure this is your SMTP server's email
+    to: "symulkabirpranta@gmail.com", // Recipient's email
     subject: "Backup Notification", // Subject line
     text: "This is a backup notification email sent from my custom SMTP server.", // Plain text body
     html: "<b>This is a backup notification email sent from my custom SMTP server.</b>", // HTML body
