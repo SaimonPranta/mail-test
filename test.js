@@ -1,11 +1,11 @@
 const nodemailer = require("nodemailer");
-const { PORT } = require("./constant");
+const { PORT } = require("./constant"); // Ensure PORT is set to 465
 
 // Create a transporter with DKIM signing
 const transporter = nodemailer.createTransport({
     host: "52.77.226.136", // Your SMTP server IP 
-    port: PORT, // Use 25, 465, or 587 based on your configuration
-    secure: false, // Set to true if using port 465
+    port: PORT, // Use 465 (Make sure this is 465)
+    secure: true, // Set to true for port 465, as it requires TLS
     auth: {
         user: "symul@micple.com", // Your email address
         pass: "ysadfswe3r", // Your email password
@@ -26,7 +26,7 @@ kEWmiuVLxQwMgP5QYwsMo2CzHnUN7u+FvQJABDAVGdm/WM4sCNrJJzgUJKMDX6yA
 aAKIgPS7XOK16RSRn2DCmm1pm1J8a2xX6ynU8WsrzWLnQLd7zK1F4xU8fQJANg6p
 NiLeDCWPRzP8WZSFdv2dh7z6qlYOF/AcjBpTJ4Pijl0XN0+Zvb+6ZBEpMjMir4Dn
 qhEx26LoSfNddHXAiQJAcRARuSlPBjxNjjjwbGMite9vuDLtyEuQKKb54ylDd1mJ
-/1/dDss6aJ5wpAem0RY7JwuLHw3qet2fCw1ClNd+Sg==
+/1/dDss6aJ5wpAem0RY7JwuLHw3qet2fCw1ClNd+Sg== 
 -----END RSA PRIVATE KEY-----`,
     },
     tls: {
