@@ -35,7 +35,7 @@ const server = new SMTPServer({
             }
             // console.log("Parsed email:", parsed);
             
-            const response = await axios.post(`${BACKEND_URL}/mail/save-mail`, {...parsed})
+            const response = await axios.post(`${BACKEND_URL}/mail/save-mail`, {hello: "WOrld"})
             console.log("response =>", response)
 
             callback();
