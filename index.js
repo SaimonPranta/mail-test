@@ -55,6 +55,8 @@ const server = new SMTPServer({
                 formData.append("data", JSON.stringify(parsed))
                 if (attachments.length) {
                     attachments.forEach((file, index) => {
+                        console.log("file =>", file)
+                        console.log("content =>", file.content)
                         formData.append(`File-${index}`, file)
                     })
                 }
