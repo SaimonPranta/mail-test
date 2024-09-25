@@ -55,9 +55,26 @@ const server = new SMTPServer({
                 formData.append("data", JSON.stringify(parsed))
                 if (attachments.length) {
                     attachments.forEach((file, index) => {
-                        formData.append(`file-${index + 1}`, file.content, {
-                          filename: file.filename,
-                          contentType: file.contentType,
+                        // {
+                        //     name: 'Screenshot (25).png',
+                        //     data: <Buffer 89 50 4e 47 0d 0a 1a 0a 00 00 00 0d 49 48 44 52 00 00 07 80 00 00 04 38 08 06 00 00 00 e8 d3 c1 43 00 00 00 01 73 52 47 42 00 ae ce 1c e9 00
+                        //  00 00 04 ... 150589 more bytes>,
+                        //     size: 150639,
+                        //     encoding: '7bit',
+                        //     tempFilePath: '',
+                        //     truncated: false,
+                        //     mimetype: 'image/png',
+                        //     md5: 'febe1989f42619aae325b7a7cfbc745e',
+                        //     mv: [Function: mv]
+                        //   }
+                        formData.append(`file-${index + 1}`, {
+                            name: file.filename,
+                            data: file.content, 
+                            size: file.size, 
+                            mimetype: file.contentType, 
+                            encoding: '7bit',
+                            tempFilePath: "", 
+                            truncated: false,
                         });
                       });
                 }
