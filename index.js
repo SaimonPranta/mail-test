@@ -35,8 +35,15 @@ const server = new SMTPServer({
                     return callback(err);
                 }
                 // console.log("Parsed email:", parsed);
+                const formData = new FormData()
+                formData.append("data", parsed)
+                // formData.append("data", parsed)
                 
-                const {data} = await axios.post(`${BACKEND_URL}/mail/save-mail`, {...parsed})
+                const {data} = await axios.post(`${BACKEND_URL}/mail/save-mail`, formData, {
+                    headers: {
+                      'Content-Type': 'multipart/form-data',
+                    },
+                  })
                 console.log("response =>", data)
     
                 callback();
