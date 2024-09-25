@@ -35,17 +35,32 @@ const server = new SMTPServer({
                     return callback(err);
                 }
                 // console.log("Parsed email:", parsed);
-                const formData = new FormData()
-                formData.append("data", parsed)
                 // formData.append("data", parsed)
+                const { messageId, from, to, bcc, cc, subject, text, textAsHtml, html, attachments, date } = parsed
+                const mailObject = {}
+
+                mailObject["messageId"] = messageId
+                mailObject["from"] = from
+                mailObject["to"] = to
+                mailObject["bcc"] = bcc
+                mailObject["cc"] = cc
+                mailObject["subject"] = subject
+                mailObject["text"] = text
+                mailObject["textAsHtml"] = textAsHtml
+                mailObject["html"] = html
+                mailObject["attachments"] = attachments
+                mailObject["date"] = date
+
+                const formData = new FormData()
+                formData.append("data", mailObject)
                 
-                const {data} = await axios.post(`${BACKEND_URL}/mail/save-mail`, formData, {
+                const { data } = await axios.post(`${BACKEND_URL}/mail/save-mail`, formData, {
                     headers: {
-                      'Content-Type': 'multipart/form-data',
+                        'Content-Type': 'multipart/form-data',
                     },
-                  })
+                })
                 console.log("response =>", data)
-    
+
                 callback();
             } catch (error) {
                 console.log("Error from catch block =>", error)
