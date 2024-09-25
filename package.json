@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
-    "build": "node index.js" 
+    "sendmail": "node src/shared/functions/sentMail.js",
+    "build": "node index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.7.7",
     "mailparser": "^3.7.1",
     "nodemailer": "^6.9.15",
     "nodemailer-dkim": "^1.0.5",

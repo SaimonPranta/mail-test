@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer");
-const { PORT } = require("./constant"); // Ensure PORT is set to 587
+const { PORT } = require("../constants/constant"); // Ensure PORT is set to 587
 
 // Create a transporter with DKIM signing
 const transporter = nodemailer.createTransport({

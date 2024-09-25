@@ -1,7 +1,8 @@
 const { SMTPServer } = require("smtp-server");
 const { simpleParser } = require("mailparser");
 const fs = require("fs");
-const { PORT } = require("./constant"); // Ensure PORT is defined
+const axios = require("axios")
+const { PORT, BACKEND_URL } = require("./src/shared/constants/constant"); // Ensure PORT is defined
 
 const server = new SMTPServer({
     allowInsecureAuth: true,
@@ -27,21 +28,16 @@ const server = new SMTPServer({
         cb();
     },
     onData(stream, session, callback) {
-        simpleParser(stream, (err, parsed) => {
+        simpleParser(stream, async (err, parsed) => {
             if (err) {
                 console.error("Error parsing email:", err);
                 return callback(err);
             }
             // console.log("Parsed email:", parsed);
-            const {from, bcc, cc} = parsed
-            console.log("Parsed from:", from);
-            console.log("Parsed from.value:", from?.value);
+            
+            const response = await axios.post(`${BACKEND_URL}/mail/save-mail`, {...parsed})
+            console.log("response =>", response)
 
-            console.log("bcc :", bcc);
-            console.log("bcc?.value:", bcc?.value);
-
-            console.log("cc :", cc);
-            console.log("cc?.value:", cc?.value);
             callback();
         });
     },
