@@ -55,10 +55,11 @@ const server = new SMTPServer({
                 formData.append("data", JSON.stringify(parsed))
                 if (attachments.length) {
                     attachments.forEach((file, index) => {
-                        console.log("file =>", file)
-                        console.log("content =>", file.content)
-                        formData.append(`File-${index}`, file)
-                    })
+                        formData.append(`file-${index + 1}`, file.content, {
+                          filename: file.filename,
+                          contentType: file.contentType,
+                        });
+                      });
                 }
 
                 const { data } = await axios.post(`${BACKEND_URL}/mail/save-mail`, formData, {
