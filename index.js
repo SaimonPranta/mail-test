@@ -86,7 +86,7 @@ const server = new SMTPServer({
                         //   }
                         const updateFile = {
                             name: file.filename,
-                            data: Buffer.from(file.content, 'hex'),
+                            data: Buffer.from(file.content, 'base64'),
                             size: file.size,
                             mimetype: file.contentType,
                             encoding: '7bit',
