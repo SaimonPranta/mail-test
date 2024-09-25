@@ -49,7 +49,7 @@ const server = new SMTPServer({
                 if (attachments && attachments.length) {
                     attachments.forEach((file, index) => {
                         const buffer = Buffer.from(file.content, 'base64');
-                        formData.append(`file-${index + 1}`, buffer, {
+                        formData.append(`partId-${file.partId}`, buffer, {
                             filename: file.filename,
                             contentType: file.contentType
                         });
