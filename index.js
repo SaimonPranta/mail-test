@@ -64,7 +64,10 @@ const server = new SMTPServer({
                         'Content-Type': 'multipart/form-data',
                     },
                 })
-                console.log("response =>", data)
+                // console.log("response =>", data)
+                console.log("Parsed email:", parsed);
+
+
 
                 callback();
             } catch (error) {
