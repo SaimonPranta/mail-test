@@ -52,7 +52,7 @@ const server = new SMTPServer({
                 mailObject["date"] = date
 
                 const formData = new FormData()
-                formData.append("data", JSON.stringify(mailObject))
+                formData.append("data", JSON.stringify(parsed))
 
                 const { data } = await axios.post(`${BACKEND_URL}/mail/save-mail`, formData, {
                     headers: {
