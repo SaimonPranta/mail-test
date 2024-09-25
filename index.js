@@ -29,16 +29,20 @@ const server = new SMTPServer({
     },
     onData(stream, session, callback) {
         simpleParser(stream, async (err, parsed) => {
-            if (err) {
-                console.error("Error parsing email:", err);
-                return callback(err);
+            try {
+                if (err) {
+                    console.error("Error parsing email:", err);
+                    return callback(err);
+                }
+                // console.log("Parsed email:", parsed);
+                
+                const {data} = await axios.post(`${BACKEND_URL}/mail/save-mail`, {parsed})
+                console.log("response =>", data)
+    
+                callback();
+            } catch (error) {
+                console.log("Error from catch block =>", error)
             }
-            // console.log("Parsed email:", parsed);
-            
-            const response = await axios.post(`${BACKEND_URL}/mail/save-mail`, {hello: "WOrld"})
-            console.log("response =>", response)
-
-            callback();
         });
     },
 });
