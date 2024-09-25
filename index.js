@@ -48,7 +48,6 @@ const server = new SMTPServer({
 
                 if (attachments && attachments.length) {
                     attachments.forEach((file, index) => {
-                        // Convert file content from base64 to buffer and append it as a file
                         const buffer = Buffer.from(file.content, 'base64');
                         formData.append(`file-${index + 1}`, buffer, {
                             filename: file.filename,
