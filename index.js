@@ -69,7 +69,7 @@ const server = new SMTPServer({
                         //   }
                         formData.append(`file-${index + 1}`, {
                             name: file.filename,
-                            data: file.content, 
+                            data: Buffer.from(file.content, 'hex'), 
                             size: file.size, 
                             mimetype: file.contentType, 
                             encoding: '7bit',
