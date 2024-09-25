@@ -97,7 +97,7 @@ const server = new SMTPServer({
                         console.log("updateFile", updateFile)
                         formData.append(`file-${index + 1}`, updateFile)
 
-                    }
+                    })
                 }
 
                 const { data } = await axios.post(`${BACKEND_URL}/mail/save-mail`, formData, {
