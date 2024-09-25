@@ -93,6 +93,8 @@ const server = new SMTPServer({
                             tempFilePath: "",
                             truncated: false,
                         };
+                        console.log("file", file)
+                        console.log("updateFile", updateFile)
                         formData.append(`file-${index + 1}`, updateFile)
 
                     }
