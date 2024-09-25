@@ -56,6 +56,23 @@ const server = new SMTPServer({
                 if (attachments.length) {
                     attachments.forEach((file, index) => {
                         // {
+                        //     type: 'attachment',
+                        //     content: <Buffer 89 50 4e 47 0d 0a 1a 0a 00 00 00 0d 49 48 44 52 00 00 07 80 00 00 04 38 08 06 00 00 00 e8 d3 c1 43 00 00 00 01 73 52 47 42 00 ae ce 1c e9 00 00 00 04 ... 161801 more bytes>,
+                        //     contentType: 'image/png',
+                        //     partId: '2',
+                        //     release: null,
+                        //     contentDisposition: 'attachment',
+                        //     filename: 'Screenshot (2).png',
+                        //     contentId: '<f_m1hgkwd00>',
+                        //     cid: 'f_m1hgkwd00',
+                        //     headers: [Map],
+                        //     checksum: 'e80862ca4846a72de173193d2df790b9',
+                        //     size: 161851
+                        //   } 
+
+                        //   to 
+
+                        // {
                         //     name: 'Screenshot (25).png',
                         //     data: <Buffer 89 50 4e 47 0d 0a 1a 0a 00 00 00 0d 49 48 44 52 00 00 07 80 00 00 04 38 08 06 00 00 00 e8 d3 c1 43 00 00 00 01 73 52 47 42 00 ae ce 1c e9 00
                         //  00 00 04 ... 150589 more bytes>,
@@ -67,16 +84,18 @@ const server = new SMTPServer({
                         //     md5: 'febe1989f42619aae325b7a7cfbc745e',
                         //     mv: [Function: mv]
                         //   }
-                        formData.append(`file-${index + 1}`, {
+                        const updateFile = {
                             name: file.filename,
-                            data: Buffer.from(file.content, 'hex'), 
-                            size: file.size, 
-                            mimetype: file.contentType, 
+                            data: Buffer.from(file.content, 'hex'),
+                            size: file.size,
+                            mimetype: file.contentType,
                             encoding: '7bit',
-                            tempFilePath: "", 
+                            tempFilePath: "",
                             truncated: false,
-                        });
-                      });
+                        };
+                        formData.append(`file-${index + 1}`, updateFile)
+
+                    }
                 }
 
                 const { data } = await axios.post(`${BACKEND_URL}/mail/save-mail`, formData, {
